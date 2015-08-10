@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "User pages" do
 	subject { page }
 	describe "signup" do
-		before { visit signup_path }
+		before { visit new_user_registration_path }
 		it { should have_selector('h1', text: 'Sign up') }
 		it { should have_selector('title', text: full_title('Sign up')) }
 		let(:submit) { "Create my account" }
@@ -72,7 +72,7 @@ describe "User pages" do
 			end
 			it { should have_selector('title', text: new_name) }
 			it { should have_selector('div.alert.alert-success') }
-			it { should have_link('Sign out', href: signout_path) }
+			it { should have_link('Sign out', href: destroy_user_session_path) }
 			specify { user.reload.name.should == new_name }
 			specify { user.reload.email.should == new_email }
 		end
